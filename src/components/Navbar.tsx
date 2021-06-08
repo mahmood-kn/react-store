@@ -61,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -93,11 +92,14 @@ const useStyles = makeStyles((theme) => ({
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const [anchorMainMenu, setAnchorMainMenu] =
+    React.useState<HTMLElement | null>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<HTMLElement | null>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMainMenuOpen = Boolean(anchorMainMenu);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -116,6 +118,14 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleHamburger = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorMainMenu(event.currentTarget);
+  };
+
+  const handleMainMenuClose = () => {
+    setAnchorMainMenu(null);
+  };
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -128,6 +138,20 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}>
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    </Menu>
+  );
+  const mainMenuId = 'main-menu';
+  const renderMainMenu = (
+    <Menu
+      anchorEl={anchorMainMenu}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mainMenuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMainMenuOpen}
+      onClose={handleMainMenuClose}>
+      <MenuItem onClick={handleMainMenuClose}>Home</MenuItem>
+      <MenuItem onClick={handleMainMenuClose}>Shop</MenuItem>
     </Menu>
   );
 
@@ -175,10 +199,12 @@ export default function PrimarySearchAppBar() {
       <AppBar position='static'>
         <Toolbar>
           <IconButton
-            edge='start'
+            onClick={handleHamburger}
             className={classes.menuButton}
             color='inherit'
-            aria-label='open drawer'>
+            aria-label='show more'
+            aria-controls={mainMenuId}
+            aria-haspopup='true'>
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant='h5' noWrap>
@@ -237,6 +263,7 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      {renderMainMenu}
     </div>
   );
 }

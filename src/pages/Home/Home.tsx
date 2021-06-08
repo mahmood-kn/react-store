@@ -1,11 +1,13 @@
 import Navbar from '../../components/Navbar';
+import Banner from './Banner';
 
-interface Props {}
+// interface Props {}
 
-const Home = (props: Props) => {
+const Home = () => {
   return (
     <div>
       <Navbar />
+      <Banner />
     </div>
   );
 };
