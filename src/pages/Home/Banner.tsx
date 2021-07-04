@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { makeStyles, Button } from '@material-ui/core';
-import homeImg from '../../assets/img/home.jpg';
+import homeImg from 'assets/img/home.jpg';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 // interface Props {}
 
@@ -11,6 +11,7 @@ const useStyle = makeStyles(() => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    textAlign: 'center',
     '&::before': {
       content: '""',
       backgroundColor: 'black',
@@ -24,6 +25,7 @@ const useStyle = makeStyles(() => ({
     background: `url(${homeImg}) center center/cover no-repeat`,
     width: '100%',
     height: '70vh',
+    marginBottom: '3rem',
   },
   heading: {
     color: '#fff',
