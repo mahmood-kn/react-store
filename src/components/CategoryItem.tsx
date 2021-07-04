@@ -9,27 +9,82 @@ const useStyles = makeStyles(() =>
   createStyles({
     imageContainer: {
       position: 'relative',
+
+      '&:before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'transparent',
+        zIndex: 2,
+        transition: 'all 0.3s ease-in-out',
+      },
+      '&:hover': {
+        '&:before': {
+          backgroundColor: 'rgba(103,117,214,.8)',
+        },
+        '& $title': {
+          color: '#fff',
+        },
+        '& $desc': {
+          color: '#fff',
+        },
+        '& $shopBlock': {
+          opacity: 1,
+          transform: 'scale(1)',
+        },
+        '& $shop': {
+          transform: 'translateY(0) ',
+        },
+      },
     },
     title: {
       position: 'absolute',
       top: '10%',
       left: '10%',
       color: '#000',
-      zIndex: 2,
-
+      zIndex: 12,
       margin: 0,
+      transition: 'all 0.3s ease-in-out',
     },
     desc: {
       position: 'absolute',
       top: '25%',
       left: '10%',
       color: '#555',
-      zIndex: 2,
+      zIndex: 12,
+      transition: 'all 0.3s ease-in-out',
     },
     img: {
       maxWidth: '100%',
       height: 'auto',
       border: '1px solid #ddd',
+    },
+    shopBlock: {
+      position: 'absolute',
+      bottom: '10%',
+      left: '10%',
+      color: '#fff',
+      margin: 0,
+      textAlign: 'center',
+      zIndex: 12,
+      display: 'inline-block',
+      transform: 'scaleX(0)',
+      transition: 'all 400ms ease',
+      transitionDelay: '0.3s',
+      paddingBottom: '0.5rem',
+      overflow: 'hidden',
+      borderBottom: 'solid 2px #fff',
+    },
+    shop: {
+      display: 'block',
+      content: '""',
+      transform: 'translateY(250%) ',
+      transformOrigin: 'top',
+      transition: 'all 800ms ease-out',
+      transitionDelay: '0.4s',
     },
   })
 );
@@ -39,6 +94,9 @@ const CategoryItem = (props: Props) => {
   return (
     <div className={classes.imageContainer}>
       <h2 className={classes.title}>{firstUpperCase(props.alt)}</h2>
+      <div className={classes.shopBlock}>
+        <div className={classes.shop}>Shop now</div>
+      </div>
       <small className={classes.desc}>{firstUpperCase(props.desc)}</small>
       <img className={classes.img} src={props.img} alt={props.alt} />
     </div>
