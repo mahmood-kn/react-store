@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Navbar from 'components/Navbar';
 import Banner from './Banner';
-import { getProds } from 'store/mainAsync';
+import { getProds, getCats } from 'store/mainAsync';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import CategoryList from './Category/CategoryList';
 import Container from '@material-ui/core/Container';
@@ -14,6 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getProds());
+    dispatch(getCats());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

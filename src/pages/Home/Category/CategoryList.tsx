@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import women from 'assets/img/women.jpg';
 import man from 'assets/img/man.jpg';
 import hat from 'assets/img/hat.jpg';
+
 interface Props {}
 
 const CategoryList = (props: Props) => {

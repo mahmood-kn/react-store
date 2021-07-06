@@ -21,9 +21,10 @@ interface Props {
   tag: string;
   handleClick: MouseEventHandler<HTMLSpanElement>;
   customClass?: string;
+  dataCat: string;
 }
 
-const Tag = ({ tag, handleClick, customClass }: Props) => {
+const Tag = ({ tag, handleClick, customClass, dataCat }: Props) => {
   const ref = useRef(null);
   const classes = useStyles();
 
@@ -31,6 +32,7 @@ const Tag = ({ tag, handleClick, customClass }: Props) => {
     <span
       ref={ref}
       onClick={handleClick}
+      data-cat={dataCat}
       className={`tagItem ${classes.tag} ${customClass}`}>
       {firstUpperCase(tag)}
     </span>

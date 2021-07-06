@@ -3,9 +3,17 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
 const useStyles = makeStyles(() =>
   createStyles({
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-evenly',
+      height: '100vh',
+      margin: '1rem',
+    },
     imgContainer: {
       position: 'relative',
       overflow: 'hidden',
+
       '&:hover $btn': {
         top: '80%',
       },
@@ -16,11 +24,11 @@ const useStyles = makeStyles(() =>
     image: {
       maxWidth: '100%',
       height: 'auto',
-      marginBottom: '1rem',
       transition: 'all 0.7s ease',
     },
     content: {
       display: 'flex',
+      marginTop: '1rem',
       justifyContent: 'space-between',
       alignItems: 'center',
       color: '#999',
@@ -61,7 +69,7 @@ interface Props {
 const ProductItem = ({ img, alt, title, price }: Props) => {
   const classes = useStyles();
   return (
-    <div>
+    <div className={classes.container}>
       <div className={classes.imgContainer}>
         <img className={classes.image} src={img} alt={alt} />
         <Button className={classes.btn} size='small' variant='contained'>
