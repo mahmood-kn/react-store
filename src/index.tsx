@@ -5,6 +5,7 @@ import App from './App';
 import 'typeface-poppins';
 import { Provider } from 'react-redux';
 import store from './store';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
@@ -21,7 +22,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,

@@ -14,6 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -150,8 +151,12 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMainMenuOpen}
       onClose={handleMainMenuClose}>
-      <MenuItem onClick={handleMainMenuClose}>Home</MenuItem>
-      <MenuItem onClick={handleMainMenuClose}>Shop</MenuItem>
+      <MenuItem component={Link} to='/' onClick={handleMainMenuClose}>
+        Home
+      </MenuItem>
+      <MenuItem component={Link} to='/shop' onClick={handleMainMenuClose}>
+        Shop
+      </MenuItem>
     </Menu>
   );
 
@@ -211,8 +216,12 @@ export default function PrimarySearchAppBar() {
             React Store
           </Typography>
           <div className={classes.menuList}>
-            <MenuItem>Home</MenuItem>
-            <MenuItem>Shop</MenuItem>
+            <MenuItem component={Link} to='/'>
+              Home
+            </MenuItem>
+            <MenuItem component={Link} to='/shop'>
+              Shop
+            </MenuItem>
           </div>
           <div className={classes.grow} />
           <div className={classes.search}>

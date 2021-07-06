@@ -9,7 +9,7 @@ const useStyles = makeStyles(() =>
   createStyles({
     imageContainer: {
       position: 'relative',
-
+      cursor: 'pointer',
       '&:before': {
         content: '""',
         position: 'absolute',

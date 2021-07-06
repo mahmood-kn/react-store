@@ -26,12 +26,14 @@ const Tags = (props: Props) => {
   };
   return (
     <div className={classes.tags}>
-      <Tag
-        handleClick={handleClick}
-        dataCat={'all'}
-        customClass='active'
-        tag='all products'
-      />
+      {categories !== null && (
+        <Tag
+          handleClick={handleClick}
+          dataCat={'all'}
+          customClass='active'
+          tag='all products'
+        />
+      )}
       {categories?.map((c, i) => (
         <Tag key={i} handleClick={handleClick} dataCat={c} tag={c} />
       ))}

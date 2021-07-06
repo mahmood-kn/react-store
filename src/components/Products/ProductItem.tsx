@@ -34,6 +34,7 @@ const useStyles = makeStyles(() =>
       color: '#999',
     },
     title: {
+      color: '#999',
       textDecoration: 'none',
       fontSize: '14px',
       transition: 'all 0.3s ease-in',

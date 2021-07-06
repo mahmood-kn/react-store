@@ -1,7 +1,8 @@
-import * as React from 'react';
-import { makeStyles, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core';
 import homeImg from 'assets/img/home.jpg';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
+import ShopButton from 'components/ShopButton';
 // interface Props {}
 
 const useStyle = makeStyles(() => ({
@@ -39,14 +40,7 @@ function Banner(): JSX.Element {
   return (
     <div className={classes.imgDiv}>
       <h1 className={classes.heading}>Welcome To React Face Store</h1>
-      <Button
-        variant='contained'
-        color='secondary'
-        href='#'
-        size='large'
-        endIcon={<ShoppingCartIcon />}>
-        Go to Shop
-      </Button>
+      <Link to='/shop' component={ShopButton}></Link>
     </div>
   );
 }
