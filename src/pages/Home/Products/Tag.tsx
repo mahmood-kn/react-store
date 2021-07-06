@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { firstUpperCase } from 'utils/funcs';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { MouseEvent, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 const useStyles = makeStyles(() =>
   createStyles({
     tag: {
@@ -23,16 +23,16 @@ interface Props {
   customClass?: string;
 }
 
-const Tag = (props: Props) => {
+const Tag = ({ tag, handleClick, customClass }: Props) => {
   const ref = useRef(null);
   const classes = useStyles();
 
   return (
     <span
       ref={ref}
-      onClick={props.handleClick}
-      className={`tagItem ${classes.tag} ${props.customClass}`}>
-      {firstUpperCase(props.tag)}
+      onClick={handleClick}
+      className={`tagItem ${classes.tag} ${customClass}`}>
+      {firstUpperCase(tag)}
     </span>
   );
 };

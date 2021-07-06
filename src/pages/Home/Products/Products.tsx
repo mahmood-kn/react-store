@@ -1,5 +1,6 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Tags from './Tags';
+import ProductList from './ProductList';
 const useStyles = makeStyles(() =>
   createStyles({
     heading: {
@@ -15,6 +16,7 @@ const Products = (props: Props) => {
     <div>
       <h1 className={classes.heading}>Product overview</h1>
       <Tags />
+      <ProductList />
     </div>
   );
 };
