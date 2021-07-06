@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Navbar from 'components/Navbar';
 import Banner from './Banner';
 import { getProds, getCats } from 'store/mainAsync';
-import { useAppSelector, useAppDispatch } from 'store/hooks';
+import { useAppDispatch } from 'store/hooks';
 import CategoryList from './Category/CategoryList';
 import Container from '@material-ui/core/Container';
 import Products from './Products/Products';
@@ -10,7 +10,6 @@ import Products from './Products/Products';
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector((state) => state.main.products);
 
   useEffect(() => {
     dispatch(getProds());
