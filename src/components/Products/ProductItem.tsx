@@ -1,6 +1,7 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles(() =>
   createStyles({
     container: {
@@ -65,23 +66,29 @@ interface Props {
   alt: string;
   title: string;
   price: number;
+  id: number;
 }
 
-const ProductItem = ({ img, alt, title, price }: Props) => {
+const ProductItem = ({ img, alt, title, price, id }: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
       <div className={classes.imgContainer}>
         <img className={classes.image} src={img} alt={alt} />
-        <Button className={classes.btn} size='small' variant='contained'>
+        <Button
+          component={Link}
+          to={`/product/${id}`}
+          className={classes.btn}
+          size='small'
+          variant='contained'>
           Quick View
         </Button>
       </div>
       <div>
         <div className={classes.content}>
-          <a href='#!' className={classes.title}>
+          <Link to={`/product/${id}`} className={classes.title}>
             {title}
-          </a>
+          </Link>
           <FavoriteBorderIcon className={classes.icon} />
         </div>
         <div className={classes.price}>${price}</div>

@@ -10,6 +10,7 @@ const ProductList = (props: Props) => {
       {products?.map((p) => (
         <Grid key={p.id} item xs={12} sm={6} md={4} lg={3}>
           <ProductItem
+            id={p.id}
             img={p.image}
             alt={p.title.split(' ')[0]}
             title={p.title}
