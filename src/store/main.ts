@@ -5,6 +5,7 @@ const initialState: MainState = {
   products: [],
   categories: [],
   filteredProducts: [],
+  singleProd: null,
 };
 
 const main = createSlice({
@@ -27,9 +28,13 @@ const main = createSlice({
         );
       }
     },
+    setSingleProd(state, action) {
+      state.singleProd = action.payload;
+    },
   },
 });
 
-export const { setProducts, setCategories, filterByCategory } = main.actions;
+export const { setProducts, setCategories, filterByCategory, setSingleProd } =
+  main.actions;
 
 export default main.reducer;
