@@ -16,6 +16,8 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from 'store/hooks';
+import Drawer from '@material-ui/core/Drawer';
+import ShoppingCard from 'components/ShoppingCard';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -138,6 +140,18 @@ export default function PrimarySearchAppBar() {
   const handleMainMenuClose = () => {
     setAnchorMainMenu(null);
   };
+  const toggleDrawer =
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
+
+      setState(open);
+    };
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -182,7 +196,7 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}>
-      <MenuItem>
+      <MenuItem onClick={toggleDrawer(true)}>
         <IconButton color='inherit'>
           <Badge badgeContent={cardAmount} color='secondary'>
             <ShoppingCartIcon />
@@ -210,6 +224,7 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
+  const [state, setState] = React.useState(false);
 
   return (
     <div className={classes.grow}>
@@ -255,7 +270,7 @@ export default function PrimarySearchAppBar() {
             />
           </div>
           <div className={classes.sectionDesktop}>
-            <IconButton color='inherit'>
+            <IconButton color='inherit' onClick={toggleDrawer(true)}>
               <Badge badgeContent={cardAmount} color='secondary'>
                 <ShoppingCartIcon />
               </Badge>
@@ -290,6 +305,14 @@ export default function PrimarySearchAppBar() {
       {renderMobileMenu}
       {renderMenu}
       {renderMainMenu}
+      <div>
+        <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
+          <ShoppingCard
+            products={cardProducts}
+            handleClose={toggleDrawer(false)}
+          />
+        </Drawer>
+      </div>
     </div>
   );
 }
