@@ -41,7 +41,7 @@ const ProductDetail = ({ product }: Props) => {
         <h2 className={classes.title}>{product.title}</h2>
         <h3>${product.price}</h3>
         <p className={classes.desc}>{product.description}</p>
-        <Amount />
+        <Amount product={product} />
       </Grid>
     </Grid>
   );

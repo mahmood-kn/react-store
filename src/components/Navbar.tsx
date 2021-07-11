@@ -15,6 +15,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from 'store/hooks';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -105,6 +106,14 @@ export default function PrimarySearchAppBar() {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const isMainMenuOpen = Boolean(anchorMainMenu);
 
+  const cardProducts = useAppSelector((state) => state.card.products);
+  const [cardAmount, setCardAmount] = React.useState<number>(0);
+  React.useEffect(() => {
+    let cardsAmount = 0;
+    cardProducts.forEach((p) => (cardsAmount += p.amount));
+    setCardAmount(cardsAmount);
+  }, [cardProducts]);
+
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -174,8 +183,8 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}>
       <MenuItem>
-        <IconButton aria-label='show 4 new mails' color='inherit'>
-          <Badge badgeContent={4} color='secondary'>
+        <IconButton color='inherit'>
+          <Badge badgeContent={cardAmount} color='secondary'>
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
@@ -246,8 +255,8 @@ export default function PrimarySearchAppBar() {
             />
           </div>
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label='show 4 new mails' color='inherit'>
-              <Badge badgeContent={4} color='secondary'>
+            <IconButton color='inherit'>
+              <Badge badgeContent={cardAmount} color='secondary'>
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>

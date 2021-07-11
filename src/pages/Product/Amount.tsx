@@ -1,8 +1,12 @@
 import { MouseEvent } from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import Product from 'models/product';
+import { addProduct } from 'store/card';
+import { useAppDispatch } from 'store/hooks';
+
 const useStyles = makeStyles(() =>
   createStyles({
     btnContainer: {
@@ -23,21 +27,44 @@ const useStyles = makeStyles(() =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      marginBottom: '2rem',
+      marginBottom: '1rem',
+    },
+    validation: {
+      color: 'red',
+      marginBottom: '0.8rem',
+      opacity: 0,
     },
   })
 );
-interface Props {}
+interface Props {
+  product: Product;
+}
 
-const Amount = (props: Props) => {
+const Amount = ({ product }: Props) => {
   const [value, setValue] = useState<number | string>(1);
   const classes = useStyles();
+  const validation = useRef<HTMLElement>(null);
+  const dispatch = useAppDispatch();
   const handlePlus = (e: MouseEvent<HTMLButtonElement>) => {
     setValue((prev) => +prev + 1);
   };
   const handleMinus = (e: MouseEvent<HTMLButtonElement>) => {
     if (value > 1) {
       setValue((prev) => +prev - 1);
+    }
+  };
+
+  const addToCard = () => {
+    if (value > 0) {
+      if (validation.current !== null) {
+        validation.current.style.opacity = '0';
+      }
+      const cardProduct = { product, amount: +value };
+      dispatch(addProduct(cardProduct));
+    } else {
+      if (validation.current !== null) {
+        validation.current.style.opacity = '1';
+      }
     }
   };
   return (
@@ -74,8 +101,15 @@ const Amount = (props: Props) => {
           +
         </Button>
       </div>
+      <small ref={validation} className={classes.validation}>
+        Not Valid Amount
+      </small>
       <div>
-        <Button variant='contained' color='primary' size='large'>
+        <Button
+          variant='contained'
+          color='primary'
+          size='large'
+          onClick={addToCard}>
           ADD TO CARD
         </Button>
       </div>
