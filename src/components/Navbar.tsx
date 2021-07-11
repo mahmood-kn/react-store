@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -30,15 +30,18 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
+      cursor: 'pointer',
+      color: '#fff',
+      textDecoration: 'none',
     },
   },
   search: {
     position: 'relative',
 
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -212,7 +215,12 @@ export default function PrimarySearchAppBar() {
             aria-haspopup='true'>
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant='h5' noWrap>
+          <Typography
+            component={Link}
+            to='/'
+            className={classes.title}
+            variant='h5'
+            noWrap>
             React Store
           </Typography>
           <div className={classes.menuList}>

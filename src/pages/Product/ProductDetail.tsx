@@ -1,7 +1,6 @@
 import Product from 'models/product';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Amount from './Amount';
 const useStyles = makeStyles(() =>
   createStyles({
@@ -43,9 +42,6 @@ const ProductDetail = ({ product }: Props) => {
         <h3>${product.price}</h3>
         <p className={classes.desc}>{product.description}</p>
         <Amount />
-        <Button variant='contained' color='primary' size='large'>
-          ADD TO CARD
-        </Button>
       </Grid>
     </Grid>
   );

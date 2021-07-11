@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from 'store/hooks';
 import ProductDetail from './ProductDetail';
 import Container from '@material-ui/core/Container';
 import { getSingleProduct } from 'store/mainAsync';
+import MoreDetails from './MoreDetails';
 
 interface Props {}
 
@@ -23,7 +24,10 @@ const Product = (props: Props) => {
       <Navbar />
       <Container maxWidth='md'>
         {product !== null && !loading ? (
-          <ProductDetail product={product} />
+          <>
+            <ProductDetail product={product} />
+            <MoreDetails desc={product.description} />
+          </>
         ) : product === null && !loading ? (
           'Not Found'
         ) : (

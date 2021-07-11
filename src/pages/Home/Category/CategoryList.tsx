@@ -7,7 +7,7 @@ interface Props {}
 
 const CategoryList = (props: Props) => {
   return (
-    <Grid container spacing={3} justify='center' alignItems='center'>
+    <Grid container spacing={3} justifyContent='center' alignItems='center'>
       <Grid item xs={12} md={6} lg={4}>
         <CategoryItem img={women} alt='women' desc='summer 2021' />
       </Grid>

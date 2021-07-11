@@ -1,14 +1,43 @@
 import ProductItem from './ProductItem';
-import Grid from '@material-ui/core/Grid';
 import { useAppSelector } from 'store/hooks';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import './Prod.css';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    container: {
+      display: 'grid',
+      gridTemplateColumns: '1fr',
+      gridGap: '2rem',
+      [theme.breakpoints.up('sm')]: {
+        gridTemplateColumns: '1fr 1fr',
+      },
+      [theme.breakpoints.up('md')]: {
+        gridTemplateColumns: '1fr 1fr 1fr',
+      },
+      [theme.breakpoints.up('lg')]: {
+        gridTemplateColumns: '1fr 1fr 1fr 1fr',
+      },
+    },
+  })
+);
+
 interface Props {}
 
 const ProductList = (props: Props) => {
-  const products = useAppSelector((state) => state.main.filteredProducts);
+  const classes = useStyles();
+  const filteredProducts = useAppSelector(
+    (state) => state.main.filteredProducts
+  );
   return (
-    <Grid container spacing={6} alignItems='center'>
-      {products?.map((p) => (
-        <Grid key={p.id} item xs={12} sm={6} md={4} lg={3}>
+    <TransitionGroup className={classes.container}>
+      {filteredProducts?.map((p) => (
+        <CSSTransition
+          mountOnEnter
+          unmountOnExit
+          timeout={300}
+          key={p.id}
+          classNames='product'>
           <ProductItem
             id={p.id}
             img={p.image}
@@ -16,9 +45,9 @@ const ProductList = (props: Props) => {
             title={p.title}
             price={p.price}
           />
-        </Grid>
+        </CSSTransition>
       ))}
-    </Grid>
+    </TransitionGroup>
   );
 };
 

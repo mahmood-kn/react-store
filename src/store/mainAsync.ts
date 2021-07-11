@@ -28,7 +28,6 @@ export const getSingleProduct =
     try {
       dispatch(setProdLoading(true));
       const data = await getSingleProd(id);
-      console.log(data);
       dispatch(setSingleProd(data));
       dispatch(setProdLoading(false));
     } catch (error) {
