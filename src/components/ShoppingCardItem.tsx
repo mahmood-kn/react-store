@@ -2,9 +2,9 @@ import React from 'react';
 import { SingleCardProd } from 'models/card';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { firstUpperCase } from 'utils/funcs';
-import { useAppDispatch } from 'store/hooks';
-import { removeProduct } from 'store/card';
+
 import { Link } from 'react-router-dom';
+
 const useStyles = makeStyles(() =>
   createStyles({
     container: {
@@ -63,20 +63,15 @@ const useStyles = makeStyles(() =>
 
 interface Props {
   prod: SingleCardProd;
+  removeItem: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-const ShoppingCardItem = ({ prod }: Props) => {
+const ShoppingCardItem = ({ prod, removeItem }: Props) => {
   const classes = useStyles();
-  const dispatch = useAppDispatch();
-  const removeItem = (e: React.MouseEvent<HTMLDivElement>) => {
-    dispatch(removeProduct(e.currentTarget.dataset.id));
-  };
+
   return (
     <div className={classes.container}>
-      <div
-        className={classes.imageContainer}
-        onClick={removeItem}
-        data-id={prod.product.id}>
+      <div className={classes.imageContainer} onClick={removeItem}>
         <img
           className={classes.image}
           src={prod.product.image}

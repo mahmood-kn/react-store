@@ -206,7 +206,7 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
       <MenuItem>
         <IconButton aria-label='show 11 new notifications' color='inherit'>
-          <Badge badgeContent={11} color='secondary'>
+          <Badge badgeContent={0} color='secondary'>
             <FavoriteBorderIcon />
           </Badge>
         </IconButton>
@@ -276,7 +276,7 @@ export default function PrimarySearchAppBar() {
               </Badge>
             </IconButton>
             <IconButton aria-label='show 17 new notifications' color='inherit'>
-              <Badge badgeContent={17} color='secondary'>
+              <Badge badgeContent={0} color='secondary'>
                 <FavoriteBorderIcon />
               </Badge>
             </IconButton>

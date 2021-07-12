@@ -3,6 +3,14 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { SingleCardProd } from 'models/card';
 import CloseIcon from '@material-ui/icons/Close';
 import ShoppingCardItem from './ShoppingCardItem';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+import { useAppDispatch } from 'store/hooks';
+import { removeProduct } from 'store/card';
+function Alert(props: AlertProps) {
+  return <MuiAlert elevation={6} variant='filled' {...props} />;
+}
+
 const useStyles = makeStyles(() =>
   createStyles({
     container: {
@@ -48,7 +56,20 @@ interface Props {
 }
 
 const ShoppingCard = ({ products, handleClose }: Props) => {
+  const [openAlert, setOpenAlert] = React.useState(false);
+  const handleAlertClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenAlert(false);
+  };
   const classes = useStyles();
+  const dispatch = useAppDispatch();
+  const removeItem = (id: number) => {
+    dispatch(removeProduct(id));
+    setOpenAlert(true);
+  };
 
   return (
     <div className={classes.container}>
@@ -59,7 +80,11 @@ const ShoppingCard = ({ products, handleClose }: Props) => {
       <div className={classes.items}>
         {products.length > 0
           ? products.map((p) => (
-              <ShoppingCardItem key={p.product.id} prod={p} />
+              <ShoppingCardItem
+                removeItem={() => removeItem(p.product.id)}
+                key={p.product.id}
+                prod={p}
+              />
             ))
           : null}
       </div>
@@ -72,6 +97,14 @@ const ShoppingCard = ({ products, handleClose }: Props) => {
               .toFixed(2)
           : 0}
       </span>
+      <Snackbar
+        open={openAlert}
+        autoHideDuration={6000}
+        onClose={handleAlertClose}>
+        <Alert onClose={handleAlertClose} severity='error'>
+          Product Removed!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

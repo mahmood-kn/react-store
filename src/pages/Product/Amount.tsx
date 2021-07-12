@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import { useState, useRef } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -6,6 +6,8 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Product from 'models/product';
 import { addProduct } from 'store/card';
 import { useAppDispatch } from 'store/hooks';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -39,8 +41,12 @@ const useStyles = makeStyles(() =>
 interface Props {
   product: Product;
 }
+function Alert(props: AlertProps) {
+  return <MuiAlert elevation={6} variant='filled' {...props} />;
+}
 
 const Amount = ({ product }: Props) => {
+  const [open, setOpen] = React.useState(false);
   const [value, setValue] = useState<number | string>(1);
   const classes = useStyles();
   const validation = useRef<HTMLElement>(null);
@@ -53,6 +59,13 @@ const Amount = ({ product }: Props) => {
       setValue((prev) => +prev - 1);
     }
   };
+  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const addToCard = () => {
     if (value > 0) {
@@ -61,6 +74,7 @@ const Amount = ({ product }: Props) => {
       }
       const cardProduct = { product, amount: +value };
       dispatch(addProduct(cardProduct));
+      setOpen(true);
     } else {
       if (validation.current !== null) {
         validation.current.style.opacity = '1';
@@ -113,6 +127,11 @@ const Amount = ({ product }: Props) => {
           ADD TO CARD
         </Button>
       </div>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity='success'>
+          Product Added To Card!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
