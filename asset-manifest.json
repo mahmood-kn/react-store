@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/react-store/static/css/main.f70153dc.chunk.css",
+    "main.js": "/react-store/static/js/main.a1a2e70d.chunk.js",
+    "main.js.map": "/react-store/static/js/main.a1a2e70d.chunk.js.map",
+    "runtime-main.js": "/react-store/static/js/runtime-main.8fc0f4e2.js",
+    "runtime-main.js.map": "/react-store/static/js/runtime-main.8fc0f4e2.js.map",
+    "static/css/2.8f2a3f35.chunk.css": "/react-store/static/css/2.8f2a3f35.chunk.css",
+    "static/js/2.b7f8ce19.chunk.js": "/react-store/static/js/2.b7f8ce19.chunk.js",
+    "static/js/2.b7f8ce19.chunk.js.map": "/react-store/static/js/2.b7f8ce19.chunk.js.map",
+    "index.html": "/react-store/index.html",
+    "static/css/2.8f2a3f35.chunk.css.map": "/react-store/static/css/2.8f2a3f35.chunk.css.map",
+    "static/css/main.f70153dc.chunk.css.map": "/react-store/static/css/main.f70153dc.chunk.css.map",
+    "static/js/2.b7f8ce19.chunk.js.LICENSE.txt": "/react-store/static/js/2.b7f8ce19.chunk.js.LICENSE.txt",
+    "static/media/hat.253c2f0b.jpg": "/react-store/static/media/hat.253c2f0b.jpg",
+    "static/media/home.4403c1f2.jpg": "/react-store/static/media/home.4403c1f2.jpg",
+    "static/media/man.33ebbef2.jpg": "/react-store/static/media/man.33ebbef2.jpg",
+    "static/media/index.css": "/react-store/static/media/poppins-latin-900italic.babad407.woff2",
+    "static/media/women.8f255cb0.jpg": "/react-store/static/media/women.8f255cb0.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8fc0f4e2.js",
+    "static/css/2.8f2a3f35.chunk.css",
+    "static/js/2.b7f8ce19.chunk.js",
+    "static/css/main.f70153dc.chunk.css",
+    "static/js/main.a1a2e70d.chunk.js"
+  ]
+}
