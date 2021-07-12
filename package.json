@@ -1,6 +1,7 @@
 {
   "name": "react-store",
   "version": "0.1.0",
+  "homepage": "https://mahmood-kn.github.io/react-store/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
@@ -16,6 +17,7 @@
     "@types/react-dom": "^17.0.6",
     "@types/react-transition-group": "^4.4.2",
     "axios": "^0.21.1",
+    "gh-pages": "^3.2.3",
     "random-avatar-generator": "^2.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -30,6 +32,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
