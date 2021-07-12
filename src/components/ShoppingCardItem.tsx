@@ -4,6 +4,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { firstUpperCase } from 'utils/funcs';
 import { useAppDispatch } from 'store/hooks';
 import { removeProduct } from 'store/card';
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles(() =>
   createStyles({
     container: {
@@ -42,6 +43,7 @@ const useStyles = makeStyles(() =>
       cursor: 'pointer',
       margin: '0 1rem',
       transition: 'all 0.3s ease-in',
+      textDecoration: 'none',
       '&:hover': {
         color: '#8E99E6',
       },
@@ -82,9 +84,9 @@ const ShoppingCardItem = ({ prod }: Props) => {
         />
       </div>
       <div className={classes.content}>
-        <span className={classes.title}>
+        <Link to={`/product/${prod.product.id}`} className={classes.title}>
           {firstUpperCase(prod.product.title.split(' ').slice(0, 2).join(' '))}
-        </span>
+        </Link>
         <span className={classes.price}>
           {prod.amount} X ${prod.product.price.toFixed(2)}
         </span>

@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+// import AccountCircle from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -116,9 +116,9 @@ export default function PrimarySearchAppBar() {
     setCardAmount(cardsAmount);
   }, [cardProducts]);
 
-  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -212,7 +212,7 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Favorite</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      {/* <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label='account of current user'
           aria-controls='primary-search-account-menu'
@@ -221,7 +221,7 @@ export default function PrimarySearchAppBar() {
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
-      </MenuItem>
+      </MenuItem> */}
     </Menu>
   );
   const [state, setState] = React.useState(false);
@@ -280,7 +280,7 @@ export default function PrimarySearchAppBar() {
                 <FavoriteBorderIcon />
               </Badge>
             </IconButton>
-            <IconButton
+            {/* <IconButton
               edge='end'
               aria-label='account of current user'
               aria-controls={menuId}
@@ -288,7 +288,7 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color='inherit'>
               <AccountCircle />
-            </IconButton>
+            </IconButton> */}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton

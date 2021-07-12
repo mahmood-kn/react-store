@@ -2,6 +2,8 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from 'store/hooks';
+import { setQuickModal, setCurrentQuick } from 'store/main';
 const useStyles = makeStyles(() =>
   createStyles({
     container: {
@@ -71,15 +73,20 @@ interface Props {
 
 const ProductItem = ({ img, alt, title, price, id }: Props) => {
   const classes = useStyles();
+
+  const dispatch = useAppDispatch();
+  const handleQuickModal = () => {
+    dispatch(setQuickModal(true));
+    dispatch(setCurrentQuick(id));
+  };
   return (
     <div className={classes.container}>
       <div className={classes.imgContainer}>
         <img className={classes.image} src={img} alt={alt} />
         <Button
-          component={Link}
-          to={`/product/${id}`}
           className={classes.btn}
           size='small'
+          onClick={handleQuickModal}
           variant='contained'>
           Quick View
         </Button>

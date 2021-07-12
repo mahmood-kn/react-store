@@ -6,6 +6,7 @@ const useStyles = makeStyles(() =>
   createStyles({
     gridContainer: {
       margin: '4rem 0',
+      width: 'fit-content',
     },
     image: {
       maxWidth: '100%',
@@ -24,12 +25,18 @@ const useStyles = makeStyles(() =>
 
 interface Props {
   product: Product;
+  width?: string;
+  height?: string;
 }
 
-const ProductDetail = ({ product }: Props) => {
+const ProductDetail = ({ product, width, height }: Props) => {
   const classes = useStyles();
   return (
-    <Grid className={classes.gridContainer} container spacing={8}>
+    <Grid
+      className={classes.gridContainer}
+      style={{ width, height }}
+      container
+      spacing={8}>
       <Grid item md={6} sm={12}>
         <img
           className={classes.image}

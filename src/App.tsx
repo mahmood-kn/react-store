@@ -3,11 +3,12 @@ import Home from 'pages/Home/Home';
 import Shop from 'pages/Shop/Shop';
 import { Route } from 'react-router-dom';
 import { getProds, getCats } from 'store/mainAsync';
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import QuickView from 'components/QuickView';
 import Product from 'pages/Product/Product';
 function App() {
   const dispatch = useAppDispatch();
-
+  const quickOpen = useAppSelector((state) => state.main.quickViewOpen);
   useEffect(() => {
     dispatch(getProds());
     dispatch(getCats());
@@ -24,6 +25,7 @@ function App() {
       <Route path='/product/:id' exact>
         <Product />
       </Route>
+      {quickOpen ? <QuickView /> : null}
     </>
   );
 }

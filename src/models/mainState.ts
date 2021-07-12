@@ -4,4 +4,6 @@ export interface MainState {
   filteredProducts: Product[];
   categories: string[];
   singleProd: Product | null;
+  quickViewOpen: boolean;
+  quickProd: Product | null;
 }

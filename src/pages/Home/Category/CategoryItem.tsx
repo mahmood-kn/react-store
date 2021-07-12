@@ -1,5 +1,6 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { firstUpperCase } from 'utils/funcs';
+import { Link } from 'react-router-dom';
 interface Props {
   img: string;
   alt: string;
@@ -93,14 +94,16 @@ const useStyles = makeStyles(() =>
 const CategoryItem = (props: Props) => {
   const classes = useStyles();
   return (
-    <div className={classes.imageContainer}>
-      <h2 className={classes.title}>{firstUpperCase(props.alt)}</h2>
-      <div className={classes.shopBlock}>
-        <div className={classes.shop}>Shop now</div>
+    <Link to='/shop'>
+      <div className={classes.imageContainer}>
+        <h2 className={classes.title}>{firstUpperCase(props.alt)}</h2>
+        <div className={classes.shopBlock}>
+          <div className={classes.shop}>Shop now</div>
+        </div>
+        <small className={classes.desc}>{firstUpperCase(props.desc)}</small>
+        <img className={classes.img} src={props.img} alt={props.alt} />
       </div>
-      <small className={classes.desc}>{firstUpperCase(props.desc)}</small>
-      <img className={classes.img} src={props.img} alt={props.alt} />
-    </div>
+    </Link>
   );
 };
 
