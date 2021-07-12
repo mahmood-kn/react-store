@@ -34,8 +34,9 @@ const useStyles = makeStyles(() =>
       },
     },
     total: {
+      position: 'absolute',
+      bottom: '20%',
       display: 'block',
-      marginTop: '2rem',
       fontSize: '1.2em',
     },
   })
@@ -57,17 +58,19 @@ const ShoppingCard = ({ products, handleClose }: Props) => {
       </div>
       <div className={classes.items}>
         {products.length > 0
-          ? products.map((p) => <ShoppingCardItem prod={p} />)
+          ? products.map((p) => (
+              <ShoppingCardItem key={p.product.id} prod={p} />
+            ))
           : null}
       </div>
       <span className={classes.total}>
         Total: $
         {products.length > 0
           ? products
-              .map((p) => Math.ceil(p.amount * p.product.price))
+              .map((p) => p.amount * p.product.price)
               .reduce((acc, curr) => acc + curr)
               .toFixed(2)
-          : null}
+          : 0}
       </span>
     </div>
   );

@@ -39,7 +39,7 @@ const ProductDetail = ({ product }: Props) => {
       </Grid>
       <Grid item md={6} sm={12}>
         <h2 className={classes.title}>{product.title}</h2>
-        <h3>${product.price}</h3>
+        <h3>${product.price.toFixed(2)}</h3>
         <p className={classes.desc}>{product.description}</p>
         <Amount product={product} />
       </Grid>

@@ -23,9 +23,14 @@ const card = createSlice({
         state.products.push(action.payload);
       }
     },
+    removeProduct(state, action) {
+      state.products = state.products.filter(
+        (p) => p.product.id !== +action.payload
+      );
+    },
   },
 });
 
-export const { addProduct } = card.actions;
+export const { addProduct, removeProduct } = card.actions;
 
 export default card.reducer;

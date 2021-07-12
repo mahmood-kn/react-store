@@ -91,7 +91,7 @@ const ProductItem = ({ img, alt, title, price, id }: Props) => {
           </Link>
           <FavoriteBorderIcon className={classes.icon} />
         </div>
-        <div className={classes.price}>${price}</div>
+        <div className={classes.price}>${price.toFixed(2)}</div>
       </div>
     </div>
   );
