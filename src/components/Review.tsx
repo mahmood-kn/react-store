@@ -42,7 +42,7 @@ const Review = (props: Props) => {
       </div>
       <div>
         <div className={classes.heading}>
-          <h3>Hassan</h3>
+          <h3>John</h3>
           <Rating name='read-only' value={4} readOnly />
         </div>
         <p>
