@@ -39,7 +39,7 @@ function Banner(): JSX.Element {
   const classes = useStyle();
   return (
     <div className={classes.imgDiv}>
-      <h1 className={classes.heading}>Welcome To React Face Store</h1>
+      <h1 className={classes.heading}>Welcome To React Fake Store</h1>
       <Link to='/shop' component={ShopButton}></Link>
     </div>
   );
